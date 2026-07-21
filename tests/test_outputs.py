@@ -33,22 +33,28 @@ def test_report_exists_and_is_valid_json():
     json.loads(REPORT_PATH.read_text())
 
 
+def test_report_has_exactly_required_keys():
+    """Success criterion 2: the report has exactly the three required keys."""
+    report = json.loads(REPORT_PATH.read_text())
+    assert set(report) == {"total_requests", "unique_ips", "top_path"}
+
+
 def test_total_requests_correct():
-    """Success criterion 2: total_requests equals the true request count."""
+    """Success criterion 3: total_requests equals the true non-empty request count."""
     expected = _ground_truth()
     report = json.loads(REPORT_PATH.read_text())
     assert report.get("total_requests") == expected["total_requests"]
 
 
 def test_unique_ips_correct():
-    """Success criterion 3: unique_ips equals the true number of distinct client IPs."""
+    """Success criterion 4: unique_ips equals the true number of distinct client IPs."""
     expected = _ground_truth()
     report = json.loads(REPORT_PATH.read_text())
     assert report.get("unique_ips") == expected["unique_ips"]
 
 
 def test_top_path_correct():
-    """Success criterion 4: top_path equals the actual most-requested path."""
+    """Success criterion 5: top_path equals the most-requested path with the stated tie-break."""
     expected = _ground_truth()
     report = json.loads(REPORT_PATH.read_text())
     assert report.get("top_path") == expected["top_path"]

@@ -14,7 +14,7 @@ model_tested = "GPT-5.4"
 agent_tested = "Terminus-2"
 difficulty_explanation = "Parse a small access log and emit summary stats."
 solution_explanation = "Read the log, count requests/unique IPs, find the top path."
-verification_explanation = "Re-parses access.log independently in the verifier and asserts total_requests, unique_ips, and top_path in report.json match the recomputed ground truth."
+verification_explanation = "Parses access.log independently and verifies report.json is valid, has exactly the required keys, and has the correct total_requests, unique_ips, and top_path values."
 
 [verifier]
 timeout_sec = 120.0

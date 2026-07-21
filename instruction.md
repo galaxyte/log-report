@@ -10,6 +10,10 @@ keys:
 
 Success criteria:
 1. /app/report.json exists and contains valid JSON.
-2. "total_requests" equals the true number of requests in /app/access.log.
-3. "unique_ips" equals the true number of distinct client IPs in the log.
-4. "top_path" equals the actual most-requested path in the log.
+2. The JSON object has exactly the keys "total_requests", "unique_ips", and
+   "top_path"; it has no additional keys.
+3. "total_requests" equals the true number of non-empty request lines in
+   /app/access.log.
+4. "unique_ips" equals the true number of distinct client IPs in the log.
+5. "top_path" equals the actual most-requested path in the log, using the
+   first path encountered in the log to break a tie.
